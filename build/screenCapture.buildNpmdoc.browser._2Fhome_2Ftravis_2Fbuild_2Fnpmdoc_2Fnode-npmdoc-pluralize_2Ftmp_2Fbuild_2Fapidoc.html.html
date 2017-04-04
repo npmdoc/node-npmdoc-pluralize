@@ -1,0 +1,347 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/blakeembrey/pluralize#readme">pluralize (v4.0.0)</a>
+</h1>
+<h4>Pluralize and singularize any word</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pluralize">module pluralize</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pluralize.addIrregularRule">
+            function <span class="apidocSignatureSpan">pluralize.</span>addIrregularRule
+            <span class="apidocSignatureSpan">(single, plural)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pluralize.addPluralRule">
+            function <span class="apidocSignatureSpan">pluralize.</span>addPluralRule
+            <span class="apidocSignatureSpan">(rule, replacement)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pluralize.addSingularRule">
+            function <span class="apidocSignatureSpan">pluralize.</span>addSingularRule
+            <span class="apidocSignatureSpan">(rule, replacement)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pluralize.addUncountableRule">
+            function <span class="apidocSignatureSpan">pluralize.</span>addUncountableRule
+            <span class="apidocSignatureSpan">(word)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pluralize.plural">
+            function <span class="apidocSignatureSpan">pluralize.</span>plural
+            <span class="apidocSignatureSpan">(word)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pluralize.singular">
+            function <span class="apidocSignatureSpan">pluralize.</span>singular
+            <span class="apidocSignatureSpan">(word)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pluralize" id="apidoc.module.pluralize">module pluralize</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pluralize.addIrregularRule" id="apidoc.element.pluralize.addIrregularRule">
+        function <span class="apidocSignatureSpan">pluralize.</span>addIrregularRule
+        <span class="apidocSignatureSpan">(single, plural)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addIrregularRule = function (single, plural) {
+  plural = plural.toLowerCase();
+  single = single.toLowerCase();
+
+  irregularSingles[single] = plural;
+  irregularPlurals[plural] = single;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+pluralize.plural('regex') //=&gt; "regexii"
+
+pluralize.singular('singles') //=&gt; "single"
+pluralize.addSingularRule(/singles$/i, 'singular')
+pluralize.singular('singles') //=&gt; "singular"
+
+pluralize.plural('irregular') //=&gt; "irregulars"
+pluralize.<span class="apidocCodeKeywordSpan">addIrregularRule</span>('irregular', 'regular')
+pluralize.plural('irregular') //=&gt; "regular"
+
+pluralize.plural('paper') //=&gt; "papers"
+pluralize.addUncountableRule('paper')
+pluralize.plural('paper') //=&gt; "paper"
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pluralize.addPluralRule" id="apidoc.element.pluralize.addPluralRule">
+        function <span class="apidocSignatureSpan">pluralize.</span>addPluralRule
+        <span class="apidocSignatureSpan">(rule, replacement)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addPluralRule = function (rule, replacement) {
+  pluralRules.push([sanitizeRule(rule), replacement]);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+pluralize('test', 1) //=&gt; "test"
+pluralize('test', 5) //=&gt; "tests"
+pluralize('test', 1, true) //=&gt; "1 test"
+pluralize('test', 5, true) //=&gt; "5 tests"
+pluralize('è˜‹æžœ', 2, true) //=&gt; "2 è˜‹æžœ"
+
+pluralize.plural('regex') //=&gt; "regexes"
+pluralize.<span class="apidocCodeKeywordSpan">addPluralRule</span>(/gex$/i, 'gexii')
+pluralize.plural('regex') //=&gt; "regexii"
+
+pluralize.singular('singles') //=&gt; "single"
+pluralize.addSingularRule(/singles$/i, 'singular')
+pluralize.singular('singles') //=&gt; "singular"
+
+pluralize.plural('irregular') //=&gt; "irregulars"
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pluralize.addSingularRule" id="apidoc.element.pluralize.addSingularRule">
+        function <span class="apidocSignatureSpan">pluralize.</span>addSingularRule
+        <span class="apidocSignatureSpan">(rule, replacement)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addSingularRule = function (rule, replacement) {
+  singularRules.push([sanitizeRule(rule), replacement]);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+pluralize('è˜‹æžœ', 2, true) //=&gt; "2 è˜‹æžœ"
+
+pluralize.plural('regex') //=&gt; "regexes"
+pluralize.addPluralRule(/gex$/i, 'gexii')
+pluralize.plural('regex') //=&gt; "regexii"
+
+pluralize.singular('singles') //=&gt; "single"
+pluralize.<span class="apidocCodeKeywordSpan">addSingularRule</span>(/singles$/i, 'singular')
+pluralize.singular('singles') //=&gt; "singular"
+
+pluralize.plural('irregular') //=&gt; "irregulars"
+pluralize.addIrregularRule('irregular', 'regular')
+pluralize.plural('irregular') //=&gt; "regular"
+
+pluralize.plural('paper') //=&gt; "papers"
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pluralize.addUncountableRule" id="apidoc.element.pluralize.addUncountableRule">
+        function <span class="apidocSignatureSpan">pluralize.</span>addUncountableRule
+        <span class="apidocSignatureSpan">(word)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addUncountableRule = function (word) {
+  if (typeof word === 'string') {
+    uncountables[word.toLowerCase()] = true;
+    return;
+  }
+
+  // Set singular and plural references for the word.
+  pluralize.addPluralRule(word, '$0');
+  pluralize.addSingularRule(word, '$0');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+pluralize.singular('singles') //=&gt; "singular"
+
+pluralize.plural('irregular') //=&gt; "irregulars"
+pluralize.addIrregularRule('irregular', 'regular')
+pluralize.plural('irregular') //=&gt; "regular"
+
+pluralize.plural('paper') //=&gt; "papers"
+pluralize.<span class="apidocCodeKeywordSpan">addUncountableRule</span>('paper')
+pluralize.plural('paper') //=&gt; "paper"
+```
+
+## License
+
+MIT
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pluralize.plural" id="apidoc.element.pluralize.plural">
+        function <span class="apidocSignatureSpan">pluralize.</span>plural
+        <span class="apidocSignatureSpan">(word)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">plural = function (word) {
+  // Get the correct token and case restoration functions.
+  var token = word.toLowerCase();
+
+  // Check against the keep object map.
+  if (keepMap.hasOwnProperty(token)) {
+    return restoreCase(word, token);
+  }
+
+  // Check against the replacement map for a direct word replacement.
+  if (replaceMap.hasOwnProperty(token)) {
+    return restoreCase(word, replaceMap[token]);
+  }
+
+  // Run all the rules against the word.
+  return sanitizeWord(token, word, rules);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+pluralize('test') //=&gt; "tests"
+pluralize('test', 1) //=&gt; "test"
+pluralize('test', 5) //=&gt; "tests"
+pluralize('test', 1, true) //=&gt; "1 test"
+pluralize('test', 5, true) //=&gt; "5 tests"
+pluralize('è˜‹æžœ', 2, true) //=&gt; "2 è˜‹æžœ"
+
+pluralize.<span class="apidocCodeKeywordSpan">plural</span>('regex') //=&gt; "regexes"
+pluralize.addPluralRule(/gex$/i, 'gexii')
+pluralize.plural('regex') //=&gt; "regexii"
+
+pluralize.singular('singles') //=&gt; "single"
+pluralize.addSingularRule(/singles$/i, 'singular')
+pluralize.singular('singles') //=&gt; "singular"
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pluralize.singular" id="apidoc.element.pluralize.singular">
+        function <span class="apidocSignatureSpan">pluralize.</span>singular
+        <span class="apidocSignatureSpan">(word)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">singular = function (word) {
+  // Get the correct token and case restoration functions.
+  var token = word.toLowerCase();
+
+  // Check against the keep object map.
+  if (keepMap.hasOwnProperty(token)) {
+    return restoreCase(word, token);
+  }
+
+  // Check against the replacement map for a direct word replacement.
+  if (replaceMap.hasOwnProperty(token)) {
+    return restoreCase(word, replaceMap[token]);
+  }
+
+  // Run all the rules against the word.
+  return sanitizeWord(token, word, rules);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+pluralize('test', 5, true) //=&gt; "5 tests"
+pluralize('è˜‹æžœ', 2, true) //=&gt; "2 è˜‹æžœ"
+
+pluralize.plural('regex') //=&gt; "regexes"
+pluralize.addPluralRule(/gex$/i, 'gexii')
+pluralize.plural('regex') //=&gt; "regexii"
+
+pluralize.<span class="apidocCodeKeywordSpan">singular</span>('singles') //=&gt; "single"
+pluralize.addSingularRule(/singles$/i, 'singular')
+pluralize.singular('singles') //=&gt; "singular"
+
+pluralize.plural('irregular') //=&gt; "irregulars"
+pluralize.addIrregularRule('irregular', 'regular')
+pluralize.plural('irregular') //=&gt; "regular"
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
