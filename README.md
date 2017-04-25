@@ -1,6 +1,6 @@
 # npmdoc-pluralize
 
-#### api documentation for  [pluralize (v4.0.0)](https://github.com/blakeembrey/pluralize#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-pluralize.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-pluralize) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-pluralize.svg)](https://travis-ci.org/npmdoc/node-npmdoc-pluralize)
+#### basic api documentation for  [pluralize (v4.0.0)](https://github.com/blakeembrey/pluralize#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-pluralize.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-pluralize) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-pluralize.svg)](https://travis-ci.org/npmdoc/node-npmdoc-pluralize)
 
 #### Pluralize and singularize any word
 
@@ -73,7 +73,8 @@
         "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --bail",
         "test-spec": "mocha -R spec --bail"
     },
-    "version": "4.0.0"
+    "version": "4.0.0",
+    "bin": {}
 }
 ```
 
